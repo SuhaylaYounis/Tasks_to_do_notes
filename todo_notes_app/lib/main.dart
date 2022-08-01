@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:todo_notes_app/modules/getting_started_screen/get_started.dart';
@@ -5,9 +6,14 @@ import 'package:todo_notes_app/modules/notes_screen/notes.dart';
 import 'package:todo_notes_app/shared/colors.dart';
 import 'modules/add_tasks_screen/add_tasks.dart';
 import 'modules/home_page_screen/home_screen.dart';
+import 'package:device_preview/device_preview.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+      DevicePreview(
+        enabled: true,
+        builder: (context) => MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -25,12 +31,20 @@ class MyApp extends StatelessWidget {
       ),
       home: AnimatedSplashScreen(
         duration: 4000,
-        splash: Image.asset(
-          "assets/images/page 1.png",
-          fit: BoxFit.cover,
-        ), nextScreen: Notes(),
-        backgroundColor: Colors.black,
+        splash: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/images/NoPath - Copy (32).png',),
+            SizedBox(
+              width: 15,
+            ),
+            Text('Tasks',style: TextStyle(color: Colors.white,fontSize: 50),)
+          ],
+        ),
+        nextScreen: AddTasks(),
+        centered: true,
         splashIconSize: double.infinity,
+        backgroundColor: kPrimaryBlue,
         splashTransition: SplashTransition.fadeTransition,
       ),
     );

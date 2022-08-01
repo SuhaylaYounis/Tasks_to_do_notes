@@ -4,90 +4,87 @@ import 'package:todo_notes_app/shared/colors.dart';
 import 'package:ms_widgets/ms_widgets.dart';
 
 class AddTasks extends StatelessWidget {
-  const AddTasks({Key? key}) : super(key: key);
+   AddTasks({Key? key}) : super(key: key);
+  TextEditingController dateinput = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return Material(
-      child: Container(
-        color: kPrimaryBlue,
+      color: kPrimaryBlue,
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 30.0, bottom: 20),
-              child: Text('Add Tasks',
+            Center(
+              child: Text(
+                  'Add Tasks',
                   style: TextStyle(fontSize: 33, color: Colors.white)),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, bottom: 15),
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text('Title',
-                      style: TextStyle(fontSize: 25, color: kOrange))),
-            ),
+            Text('Title',
+                style: TextStyle(fontSize: 25, color: kOrange)),
             defaultTextFormField(
-              width: 370,
-              height: 40,
+              hintText: "Enter title",
+              inputColor: Colors.white,
+              hintColor: Colors.white,
+              width: width*0.8,
+              height: height*0.1,
               borderColor: kOrange,
               filledColor: Colors.transparent,
               borderRadius: BorderRadius.circular(8.0),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, bottom: 15, top: 15),
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text('Add to list',
-                      style: TextStyle(
-                          fontSize: 25, color: kOrange, fontFamily: 'Cairo'))),
-            ),
+            Text('Add to list',
+                style: TextStyle(
+                    fontSize: 25, color: kOrange, fontFamily: 'Cairo')),
             defaultTextFormField(
-              width: 370,
-              height: 40,
+              hintText: "Enter list",
+              inputColor: Colors.white,
+              hintColor: Colors.white,
+              width: width*0.8,
+              height: height*0.1,
               borderColor: kOrange,
               filledColor: Colors.transparent,
               borderRadius: BorderRadius.circular(8.0),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, bottom: 15, top: 15),
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text('Date',
-                      style: TextStyle(fontSize: 25, color: kOrange))),
-            ),
+            Text('Date',
+                style: TextStyle(fontSize: 25, color: kOrange)),
             defaultTextFormField(
-              width: 370,
-              height: 40,
+              hintText: "Enter Date",
+              textFieldController: dateinput,
+              suffixWidget: Icon(Icons.calendar_today, color: Colors.white, ),
+              inputColor: Colors.white,
+              hintColor: Colors.white,
+              width: width*0.8,
+              height: height*0.1,
               borderColor: kOrange,
               filledColor: Colors.transparent,
               borderRadius: BorderRadius.circular(8.0),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, bottom: 15, top: 15),
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text('Discription',
-                      style: TextStyle(fontSize: 25, color: kOrange))),
-            ),
+            Text('Discription',
+                style: TextStyle(fontSize: 25, color: kOrange)),
             defaultTextFormField(
               hintText: 'Add description here...',
-              width: 370,
-              height: 200,
+              width: width * 0.7,
+              lineHeight: 5,
               borderColor: Colors.transparent,
               filledColor: Colors.white,
               borderRadius: BorderRadius.circular(8.0),
             ),
-            defaultButton(
-              backgroundColor: kButtonBlue,
-              text: 'Add Tasks',
-              textStyle: TextStyle(color: Colors.white, fontSize: 20),
-              decoration: BoxDecoration(
-                color: kButtonBlue,
+            Center(
+              child: defaultButton(
+                isUpperCase: true,
+                backgroundColor: kButtonBlue,
+                text: 'Add Tasks',
                 borderRadius: BorderRadius.circular(15.0),
+                textStyle: TextStyle(color: Colors.white, fontSize: 20),
+                borderColor: kPrimaryBlue,
+                buttonHeight: height*0.1,
+                buttonWidth: width*0.4,
+                function: () {},
               ),
-              borderColor: kPrimaryBlue,
-              buttonHeight: 45,
-              buttonWidth: 250,
-              function: () {},
             ),
           ],
         ),

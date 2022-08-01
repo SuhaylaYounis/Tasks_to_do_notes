@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
 import 'package:todo_notes_app/shared/colors.dart';
 import 'package:ms_widgets/ms_widgets.dart';
+import 'package:todo_notes_app/shared/components.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -11,290 +12,79 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Container(
-        color: kLightGrey,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 90.0,
-              ),
-              child: Card(
-                elevation: 10.0,
-                color: kLightGrey,
-                //clipBehavior:Clip.antiAliasWithSaveLayer ,
-                child: Container(
-                  //clipBehavior:Clip.antiAliasWithSaveLayer ,
-                  height: 60,
-                  width: 330,
-                  decoration: BoxDecoration(
-                    color: kPrimaryBlue,
-                    borderRadius: BorderRadius.circular(20.0),
-                    image: DecorationImage(
-                      image: AssetImage(
-                        "assets/images/9069 [Converted].png",
-                      ),
-                      alignment: Alignment.centerRight,
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 15, top: 20),
-                    child: Text(
-                      "Simply control your time",
-                      style: TextStyle(color: Colors.white, fontSize: 23),
+    return Scaffold(
+      backgroundColor: kLightGrey,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: kPrimaryBlue,
+        onPressed: () {},
+        child: Image.asset(
+          "assets/images/NoPath - Copy (61).png",
+        ),
+      ),
+      body: Material(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 40),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    decoration: BoxDecoration(
+                        color: kPrimaryBlue,
+                        borderRadius: BorderRadius.circular(30)),
+                    // TODO Header
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          "Simply control your time",
+                          style: TextStyle(color: Colors.white, fontSize: 23),
+                        ),
+                        Image.asset(
+                          'assets/images/9069 [Converted].png',
+                          width: 40,
+                        ),
+                      ],
                     ),
                   ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, top: 30),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
+                SizedBox(
+                  height: 30,
+                ),
+                Text(
                   'Tasks',
+                  textAlign: TextAlign.start,
                   style: TextStyle(
                       fontSize: 26,
                       color: kPrimaryBlue,
                       fontFamily: 'Cairo',
                       fontWeight: FontWeight.bold),
                 ),
-              ),
-            ),
-            Card(
-              color: Colors.white,
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              //TODO Location
-              child: Container(
-                height: 50,
-                width: 370,
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: RoundCheckBox(
-                        onTap: (selected) {},
-                        isChecked: true,
-                      ),
+                Expanded(
+                  child: ListView.separated(
+                    itemBuilder: (context, index) => Item(
+                      title: 'Learn HTML',
+                      active: true,
+                      deleteClick: () {
+
+                      },
+                      editClick: () {},
+                      onChange: (bool? val) {},
+                      viewClick: () {},
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Text(
-                        "Learn HTML",
-                        style: TextStyle(
-                          fontSize: 24,
-                          color: kPrimaryBlue,
-                          fontFamily: 'Cairo',
-                        ),
-                      ),
+                    separatorBuilder: (context, index) => SizedBox(
+                      height: 3,
                     ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.remove_red_eye_outlined),
-                        color: kButtonBlue,
-                        iconSize: 30,
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                        onPressed: () {},
-                        icon:
-                            Image.asset('assets/images/NoPath - Copy (40).png'),
-                        iconSize: 10,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 10),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon:
-                            Image.asset('assets/images/NoPath - Copy (39).png'),
-                        iconSize: 25,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              //TODO Location
-              child: Container(
-                height: 50,
-                width: 370,
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: RoundCheckBox(
-                        onTap: (selected) {},
-                        isChecked: true,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Text(
-                        "Learn CSS",
-                        style: TextStyle(
-                          fontSize: 24,
-                          color: kPrimaryBlue,
-                          fontFamily: 'Cairo',
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.remove_red_eye_outlined),
-                        color: kButtonBlue,
-                        iconSize: 30,
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                        onPressed: () {},
-                        icon:
-                            Image.asset('assets/images/NoPath - Copy (40).png'),
-                        iconSize: 10,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 10),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon:
-                            Image.asset('assets/images/NoPath - Copy (39).png'),
-                        iconSize: 25,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              //TODO Location
-              child: Container(
-                height: 50,
-                width: 370,
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(2.0),
-                      child: RoundCheckBox(
-                        onTap: (selected) {},
-                        isChecked: true,
-                      ),
-                    ),
-                    Text(
-                      "Learn JavaScript",
-                      style: TextStyle(
-                        fontSize: 24,
-                        color: kPrimaryBlue,
-                        fontFamily: 'Cairo',
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.remove_red_eye_outlined),
-                      color: kButtonBlue,
-                      iconSize: 30,
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Image.asset('assets/images/NoPath - Copy (40).png'),
-                      iconSize: 10,
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Image.asset('assets/images/NoPath - Copy (39).png'),
-                      iconSize: 25,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              //TODO Location
-              child: Container(
-                height: 50,
-                width: 370,
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: RoundCheckBox(
-                        onTap: (selected) {},
-                        isChecked: true,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Text(
-                        "Learn Java",
-                        style: TextStyle(
-                          fontSize: 24,
-                          color: kPrimaryBlue,
-                          fontFamily: 'Cairo',
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.remove_red_eye_outlined),
-                        color: kButtonBlue,
-                        iconSize: 30,
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                        onPressed: () {},
-                        icon:
-                            Image.asset('assets/images/NoPath - Copy (40).png'),
-                        iconSize: 10,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 10),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon:
-                            Image.asset('assets/images/NoPath - Copy (39).png'),
-                        iconSize: 25,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Align(
-                alignment: Alignment.bottomRight,
-                child: FloatingActionButton(
-                  backgroundColor: kPrimaryBlue,
-                  onPressed: () {},
-                  child: Image.asset(
-                    "assets/images/NoPath - Copy (61).png",
+                    itemCount: 13,
                   ),
-                )),
-          ],
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
