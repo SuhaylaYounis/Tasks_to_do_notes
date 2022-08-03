@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:todo_notes_app/shared/colors.dart';
 import 'package:ms_widgets/ms_widgets.dart';
+import 'package:date_time_picker/date_time_picker.dart';
 
 class AddTasks extends StatelessWidget {
    AddTasks({Key? key}) : super(key: key);
-  TextEditingController dateinput = TextEditingController();
+  var dateinput = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
+
     return Material(
       color: kPrimaryBlue,
       child: Padding(
@@ -52,11 +54,24 @@ class AddTasks extends StatelessWidget {
             Text('Date',
                 style: TextStyle(fontSize: 25, color: kOrange)),
             defaultTextFormField(
+
               hintText: "Enter Date",
               textFieldController: dateinput,
-              suffixWidget: Icon(Icons.calendar_today, color: Colors.white, ),
+              prefixWidget:DateTimePicker(
+                icon: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Icon(Icons.calendar_today,color: Colors.white),
+                ),
+                initialValue: '',
+                firstDate: DateTime(2000),
+                lastDate: DateTime(2100),
+                onSaved: (val) {
+                  dateinput.text=val.toString();
+                },
+              ),
               inputColor: Colors.white,
               hintColor: Colors.white,
+              onSubmit: (){},
               width: width*0.8,
               height: height*0.1,
               borderColor: kOrange,

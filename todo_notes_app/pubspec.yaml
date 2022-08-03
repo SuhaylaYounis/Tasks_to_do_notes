@@ -38,6 +38,8 @@ dependencies:
   ms_widgets: ^1.0.0
   roundcheckbox: ^2.0.4+1
   device_preview: ^1.1.0
+  date_time_picker: ^2.1.0
+  awesome_dialog: ^2.2.1
 
 dev_dependencies:
   flutter_test:

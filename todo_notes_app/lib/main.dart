@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
             Text('Tasks',style: TextStyle(color: Colors.white,fontSize: 50),)
           ],
         ),
-        nextScreen: AddTasks(),
+        nextScreen: HomeScreen(),
         centered: true,
         splashIconSize: double.infinity,
         backgroundColor: kPrimaryBlue,

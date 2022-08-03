@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
@@ -5,13 +6,24 @@ import 'package:todo_notes_app/shared/colors.dart';
 import 'package:ms_widgets/ms_widgets.dart';
 import 'package:todo_notes_app/shared/components.dart';
 
+import '../../models/taskModel.dart';
+
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
   bool valuefirst = false;
   bool valuesecond = false;
+  List<TaskModel> items = List.generate(
+      5,
+      (index) => TaskModel(
+          active: true,
+          title: 'Learn HTML',
+          date: '2022-8-10',
+          description: 'Learn HTML and Study English')).toList();
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kLightGrey,
       floatingActionButton: FloatingActionButton(
@@ -31,8 +43,8 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Center(
                   child: Container(
-                    height: MediaQuery.of(context).size.height * 0.1,
-                    width: MediaQuery.of(context).size.width * 0.7,
+                    height: height * 0.1,
+                    width: width * 0.7,
                     decoration: BoxDecoration(
                         color: kPrimaryBlue,
                         borderRadius: BorderRadius.circular(30)),
@@ -67,21 +79,167 @@ class HomeScreen extends StatelessWidget {
                 Expanded(
                   child: ListView.separated(
                     itemBuilder: (context, index) => Item(
-                      title: 'Learn HTML',
-                      active: true,
+                      title: items[index].title,
+                      active: items[index].active,
+                      /// DELETE ICON ON CLICK
                       deleteClick: () {
+                        AwesomeDialog(
+                            width: width * 0.6,
+                            context: context,
+                            animType: AnimType.SCALE,
+                            dialogType: DialogType.WARNING,
+                            body: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text("Do you want to delete task "),
+                                  SizedBox(
+                                    height: height * 0.01,
+                                  ),
+                                ],
+                              ),
+                            ),
 
+                            btnCancelOnPress: () {
+                              Navigator.pop(context);
+                            },
+                            btnOkOnPress: () {
+                              Navigator.pop(context);
+                            }).show();
                       },
-                      editClick: () {},
+                      ///EDIT ICON ON CLICK
+                      editClick: () {
+                        AwesomeDialog(
+                          width: width * 0.6,
+                          context: context,
+                          animType: AnimType.SCALE,
+                          dialogType: DialogType.WARNING,
+                          body: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                defaultTextFormField(
+                                  borderRadius: BorderRadius.circular(20),
+                                  filledColor: Colors.white,
+                                  borderColor: Colors.grey,
+                                  hintColor: Colors.black,
+                                  width: width * 0.5,
+                                  enableEditing: false,
+                                  contentPadding:
+                                      EdgeInsets.symmetric(horizontal: 10),
+                                  hintText: items[index].title,
+                                ),
+                                SizedBox(
+                                  height: height * 0.01,
+                                ),
+                                defaultTextFormField(
+                                  borderRadius: BorderRadius.circular(20),
+                                  filledColor: Colors.white,
+                                  borderColor: Colors.grey,
+                                  hintColor: Colors.black,
+                                  width: width * 0.5,
+                                  enableEditing: false,
+                                  contentPadding:
+                                      EdgeInsets.symmetric(horizontal: 10),
+                                  hintText: items[index].description,
+                                ),
+                                SizedBox(
+                                  height: height * 0.01,
+                                ),
+                                defaultTextFormField(
+                                  borderRadius: BorderRadius.circular(20),
+                                  filledColor: Colors.white,
+                                  borderColor: Colors.grey,
+                                  hintColor: Colors.black,
+                                  prefixWidget: Icon(Icons.date_range_outlined),
+                                  width: width * 0.5,
+                                  enableEditing: false,
+                                  contentPadding:
+                                      EdgeInsets.symmetric(horizontal: 10),
+                                  hintText: items[index].date,
+                                ),
+                              ],
+                            ),
+                          ),
+                          btnOk: SizedBox(
+                            height: 40,
+                          ),
+                        ).show();
+                      },
                       onChange: (bool? val) {},
-                      viewClick: () {},
+
+                      /// EYE VIEW ICON ON CLICK
+                      viewClick: () {
+                        AwesomeDialog(
+                          width: width * 0.6,
+                          context: context,
+                          animType: AnimType.SCALE,
+                          dialogType: DialogType.WARNING,
+                          body: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                defaultTextFormField(
+                                  borderRadius: BorderRadius.circular(20),
+                                  filledColor: Colors.white,
+                                  borderColor: Colors.grey,
+                                  hintColor: Colors.black,
+                                  width: width * 0.5,
+                                  enableEditing: false,
+                                  contentPadding:
+                                      EdgeInsets.symmetric(horizontal: 10),
+                                  hintText: items[index].title,
+                                ),
+                                SizedBox(
+                                  height: height * 0.01,
+                                ),
+                                defaultTextFormField(
+                                  borderRadius: BorderRadius.circular(20),
+                                  filledColor: Colors.white,
+                                  borderColor: Colors.grey,
+                                  hintColor: Colors.black,
+                                  width: width * 0.5,
+                                  enableEditing: false,
+                                  contentPadding:
+                                      EdgeInsets.symmetric(horizontal: 10),
+                                  hintText: items[index].description,
+                                ),
+                                SizedBox(
+                                  height: height * 0.01,
+                                ),
+                                defaultTextFormField(
+                                  borderRadius: BorderRadius.circular(20),
+                                  filledColor: Colors.white,
+                                  borderColor: Colors.grey,
+                                  hintColor: Colors.black,
+                                  prefixWidget: Icon(Icons.date_range_outlined),
+                                  width: width * 0.5,
+                                  enableEditing: false,
+                                  contentPadding:
+                                      EdgeInsets.symmetric(horizontal: 10),
+                                  hintText: items[index].date,
+                                ),
+                              ],
+                            ),
+                          ),
+                          btnOk: SizedBox(
+                            height: 40,
+                          ),
+                        ).show();
+                      },
                     ),
                     separatorBuilder: (context, index) => SizedBox(
                       height: 3,
                     ),
-                    itemCount: 13,
+                    itemCount: items.length,
                   ),
-                )
+                ),
               ],
             ),
           ),

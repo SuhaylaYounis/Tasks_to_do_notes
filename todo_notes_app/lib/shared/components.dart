@@ -1,32 +1,29 @@
-
 import 'package:flutter/material.dart';
-
 import 'colors.dart';
 
 class Item extends StatelessWidget {
-
   final VoidCallback? viewClick;
   final VoidCallback? editClick;
   final VoidCallback? deleteClick;
   final Function? onChange;
   final String? title;
   final bool? active;
+
   Item({
-   required this.deleteClick,
-   required this.editClick,
-   required this.viewClick,
-   required this.onChange,
-   required this.title,
-   required this.active,
-});
+    required this.deleteClick,
+    required this.editClick,
+    required this.viewClick,
+    required this.onChange,
+    required this.title,
+    required this.active,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Card(
       color: Colors.white,
       elevation: 5,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       //TODO Location
       child: SizedBox(
         height: 50,
@@ -40,9 +37,9 @@ class Item extends StatelessWidget {
               ),
               value: active,
               activeColor: Colors.green,
-              onChanged: (bool? active){
+              onChanged: (bool? active) {
                 return onChange!(active);
-            },
+              },
             ),
             Text(
               title!,
@@ -52,22 +49,26 @@ class Item extends StatelessWidget {
                 fontFamily: 'Cairo',
               ),
             ),
+
+            /// EYE VIEW ICON BUTTON
             IconButton(
               onPressed: viewClick,
               icon: Icon(Icons.remove_red_eye_outlined),
               color: kButtonBlue,
               iconSize: 30,
             ),
+
+            /// EDIT ICON BUTTON
             IconButton(
               onPressed: editClick,
-              icon:
-              Image.asset('assets/images/NoPath - Copy (40).png'),
+              icon: Image.asset('assets/images/NoPath - Copy (40).png'),
               iconSize: 10,
             ),
+
+            ///DELETE ICON BUTTON
             IconButton(
               onPressed: deleteClick,
-              icon:
-              Image.asset('assets/images/NoPath - Copy (39).png'),
+              icon: Image.asset('assets/images/NoPath - Copy (39).png'),
               iconSize: 25,
             ),
           ],

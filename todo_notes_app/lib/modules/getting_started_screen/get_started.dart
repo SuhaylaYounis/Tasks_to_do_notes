@@ -36,11 +36,10 @@ class GetStarted extends StatelessWidget {
           ),
           Text("Welcome to tasks",
               style: TextStyle(fontSize: 25, color: Colors.white)),
-          Center(
-            child: Text(
-                'An application to write your daily personal, work and other tasks.',
-                style: TextStyle(fontSize: 22, color: Colors.white)),
-          ),
+          Text(
+              'An application to write your daily personal, work and other tasks.',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 22, color: Colors.white)),
           defaultButton(
             backgroundColor: kButtonBlue,
             text: 'Get Started',
